@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luis Aragón — Mentor · Coach · Advisor en Estrategia, Cultura y Adopción de IA</title>
+<meta name="description" content="Acompaño a líderes, equipos y organizaciones a multiplicar capacidades humanas mediante la adopción práctica de la IA. Ex CHRO, CSO y CDO de Santander Argentina. Buenos Aires.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Inter:wght@400;500;600;700;800&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blanco:#F7F7F4;
+    --negro:#0D0D0D;
+    --grafito:#2B2B2B;
+    --gris:#6E6E6E;
+    --gris-claro:#D9D9D9;
+    --naranja:#FF6A00;
+    --azul:#3F7DDB;
+    --cian:#4EC9F5;
+    --verde:#42D97C;
+    --violeta:#8B5CF6;
+    --oswald:'Oswald','Arial Narrow',sans-serif;
+    --inter:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+    --caveat:'Caveat',cursive;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation:none!important;transition:none!important}
+  }
+  body{
+    background:var(--blanco);
+    color:var(--negro);
+    font-family:var(--inter);
+    font-size:1rem;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--negro);text-decoration:none}
+  a:hover{color:var(--naranja)}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--naranja);outline-offset:3px}
+  img{max-width:100%;display:block}
+
+  .wrap{max-width:1120px;margin:0 auto;padding:0 clamp(1.25rem,4vw,3rem)}
+
+  /* ---------- Nav (oscuro) ---------- */
+  header.site{
+    background:var(--negro);
+    position:sticky;top:0;z-index:50;
+  }
+  .nav{display:flex;align-items:baseline;justify-content:space-between;gap:1.5rem;padding:1.3rem 0}
+  .nav .brand{font-family:var(--oswald);font-weight:500;font-size:1.25rem;letter-spacing:.01em;color:var(--blanco)}
+  .nav .brand span{color:var(--naranja)}
+  .nav ul{display:flex;gap:1.6rem;list-style:none;flex-wrap:wrap}
+  .nav ul a{color:#8A8A8A;font-size:.78rem;text-transform:uppercase;letter-spacing:.12em;font-weight:500}
+  .nav ul a:hover{color:var(--naranja)}
+  .nav ul a.cta{color:var(--naranja);border-bottom:1px solid var(--naranja);font-weight:600}
+  .nav ul a.cta:hover{color:var(--blanco);border-color:var(--blanco)}
+
+  /* ---------- Hero manifiesto (Capa Luis IA) ---------- */
+  .hero{background:var(--negro);color:var(--blanco)}
+  .hero .grid{
+    display:grid;grid-template-columns:280px 1fr;gap:clamp(2rem,5vw,4rem);
+    align-items:center;padding:clamp(3rem,8vh,5.5rem) 0 clamp(3rem,8vh,5rem);
+  }
+  .hero .retrato{
+    width:280px;height:280px;border-radius:50%;overflow:hidden;
+    border:4px solid var(--blanco);background:var(--grafito);
+  }
+  .hero .retrato img{width:100%;height:100%;object-fit:cover;object-position:center 18%}
+  .hero h1{
+    font-family:var(--inter);font-weight:800;
+    font-size:clamp(1.9rem,4.2vw,3.3rem);
+    line-height:1.08;letter-spacing:-.02em;text-wrap:balance;
+  }
+  .hero h1 .linea{display:block;margin-top:.35em}
+  .hero h1 .linea:first-child{margin-top:0}
+  .hero h1 .verbo{color:var(--naranja)}
+  .hero .actions{display:flex;gap:1rem;flex-wrap:wrap;margin-top:2.2rem}
+  .btn{
+    display:inline-block;padding:.85rem 1.8rem;
+    font-size:.78rem;text-transform:uppercase;letter-spacing:.12em;font-weight:700;
+    transition:opacity .18s,background .18s,color .18s,border-color .18s;
+  }
+  .btn.solid{background:var(--naranja);color:var(--negro)}
+  .btn.solid:hover{opacity:.85;color:var(--negro)}
+  .btn.line{border:1px solid var(--blanco);color:var(--blanco)}
+  .btn.line:hover{border-color:var(--naranja);color:var(--naranja)}
+  @media (max-width:760px){
+    .hero .grid{grid-template-columns:1fr;justify-items:start}
+    .hero .retrato{width:190px;height:190px}
+  }
+
+  /* stripe blanca bajo el hero */
+  .stripe{
+    background:var(--blanco);color:var(--negro);
+    border-bottom:1px solid var(--gris-claro);
+  }
+  .stripe .in{
+    display:flex;justify-content:space-between;align-items:center;gap:1.5rem;
+    padding:1.1rem 0;flex-wrap:wrap;
+  }
+  .stripe p{font-size:.95rem;font-weight:500}
+  .stripe p b{font-weight:700}
+  .stripe .li{display:flex;align-items:center;gap:.7rem;font-size:.88rem;font-weight:600}
+  .stripe .li span{
+    width:26px;height:26px;background:var(--naranja);color:var(--blanco);
+    display:grid;place-items:center;font-weight:800;font-size:.8rem;letter-spacing:-.02em;
+  }
+
+  /* ---------- Ficha ---------- */
+  .ficha{
+    display:grid;grid-template-columns:repeat(4,1fr);
+    padding:2.6rem 0 0;
+  }
+  .ficha > div{padding:0 1.4rem 1.6rem 0;border-left:1px solid var(--gris-claro);padding-left:1.4rem}
+  .ficha > div:first-child{border-left:none;padding-left:0}
+  .ficha .num{
+    font-family:var(--oswald);font-weight:500;
+    font-size:clamp(2.2rem,4vw,3.2rem);line-height:1;
+    font-variant-numeric:tabular-nums;
+  }
+  .ficha .num sup{font-size:.5em;color:var(--naranja)}
+  .ficha p{font-size:.82rem;color:var(--gris);margin-top:.6rem;line-height:1.45}
+  @media (max-width:720px){
+    .ficha{grid-template-columns:1fr 1fr;row-gap:1.4rem}
+    .ficha > div{border-left:none;padding-left:0;border-top:1px solid var(--gris-claro);padding-top:1.2rem}
+    .ficha > div:nth-child(-n+2){border-top:none;padding-top:0}
+  }
+
+  /* ---------- Secciones ---------- */
+  section{padding:clamp(3rem,8vh,5.5rem) 0}
+  .sec-label{display:flex;align-items:center;gap:1rem;margin-bottom:2.2rem}
+  .sec-label span{
+    font-size:.78rem;text-transform:uppercase;letter-spacing:.18em;font-weight:600;color:var(--gris);
+  }
+  .sec-label::after{content:"";height:1px;background:var(--gris-claro);flex:1}
+  h2{
+    font-family:var(--oswald);font-weight:500;
+    font-size:clamp(1.8rem,3.6vw,2.7rem);line-height:1.08;letter-spacing:-.01em;
+    text-wrap:balance;max-width:26ch;margin-bottom:1.3rem;
+  }
+  h2 .verbo{color:var(--naranja)}
+  .prose{max-width:62ch;color:var(--grafito);font-size:1.02rem}
+  .prose p + p{margin-top:1.1rem}
+  .prose strong{color:var(--negro);font-weight:700}
+
+  /* ---------- Enfoque con foto ---------- */
+  .enfoque-grid{display:grid;grid-template-columns:1.45fr 1fr;gap:clamp(2rem,5vw,4.5rem);align-items:start}
+  .enfoque-foto{overflow:hidden;background:var(--negro)}
+  .enfoque-foto img{width:100%;aspect-ratio:4/3;object-fit:cover;filter:grayscale(1)}
+  .enfoque-foto figcaption{
+    font-size:.78rem;color:var(--gris);padding:.7rem 0 0;letter-spacing:.02em;
+  }
+  .pullquote{
+    margin-top:2rem;border-left:3px solid var(--naranja);padding-left:1.4rem;
+  }
+  .pullquote p{
+    font-family:var(--oswald);font-weight:500;
+    font-size:clamp(1.3rem,2.2vw,1.7rem);line-height:1.2;text-wrap:balance;
+  }
+  .pullquote small{
+    display:block;margin-top:.9rem;
+    font-size:.75rem;text-transform:uppercase;letter-spacing:.14em;font-weight:600;color:var(--gris);
+  }
+  @media (max-width:820px){.enfoque-grid{grid-template-columns:1fr}}
+
+  /* ---------- Idea fuerza (banda negra) ---------- */
+  .idea-fuerza{
+    background:var(--negro);color:var(--blanco);
+    padding:clamp(4rem,10vh,6rem) 0;text-align:center;
+  }
+  .idea-fuerza p{
+    font-family:var(--oswald);font-weight:500;
+    font-size:clamp(2rem,5vw,3.6rem);line-height:1.05;letter-spacing:-.01em;
+    text-wrap:balance;max-width:22ch;margin:0 auto;
+  }
+  .idea-fuerza .verbo{color:var(--naranja)}
+
+  /* ---------- Servicios ---------- */
+  .servicios{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(2rem,4vw,4rem)}
+  .servicio{
+    display:grid;grid-template-columns:64px 1fr;gap:1.4rem;
+    border-top:2px solid var(--negro);padding:1.7rem 0 2.2rem;
+  }
+  .servicio .n{
+    font-family:var(--oswald);font-weight:500;font-size:2.6rem;line-height:1;color:var(--gris-claro);
+  }
+  .servicio .tag{
+    font-size:.7rem;text-transform:uppercase;letter-spacing:.15em;font-weight:700;
+    color:var(--naranja);display:block;margin-bottom:.6rem;
+  }
+  .servicio h3{
+    font-family:var(--oswald);font-weight:500;font-size:1.45rem;line-height:1.15;
+    margin-bottom:.7rem;text-wrap:balance;
+  }
+  .servicio p{color:var(--grafito);font-size:.95rem}
+  @media (max-width:720px){.servicios{grid-template-columns:1fr}}
+
+  /* ---------- Investigaciones teaser ---------- */
+  .blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.5rem,3vw,2.6rem)}
+  .blog-card{border-top:2px solid var(--negro);padding-top:1.3rem}
+  .blog-card .tag{
+    font-size:.7rem;text-transform:uppercase;letter-spacing:.15em;font-weight:700;
+    display:block;margin-bottom:.7rem;
+  }
+  .blog-card .tag.azul{color:var(--azul)}
+  .blog-card .tag.verde{color:var(--verde)}
+  .blog-card h3{
+    font-family:var(--oswald);font-weight:500;font-size:1.3rem;line-height:1.18;
+    margin-bottom:.6rem;text-wrap:balance;
+  }
+  .blog-card h3 a:hover{color:var(--naranja)}
+  .blog-card p{color:var(--grafito);font-size:.9rem}
+  .blog-more{margin-top:2.4rem}
+  .btn.dark{border:1px solid var(--negro);color:var(--negro)}
+  .btn.dark:hover{background:var(--negro);color:var(--blanco)}
+  @media (max-width:820px){.blog-grid{grid-template-columns:1fr}}
+
+  /* ---------- Trayectoria ---------- */
+  .tl{border-top:2px solid var(--negro)}
+  .tl-item{
+    display:grid;grid-template-columns:160px 1fr;gap:1.5rem;
+    padding:1.5rem 0;border-bottom:1px solid var(--gris-claro);
+  }
+  .tl-item .years{
+    font-variant-numeric:tabular-nums;
+    font-size:.85rem;letter-spacing:.06em;color:var(--gris);padding-top:.35rem;
+  }
+  .tl-item h3{font-family:var(--oswald);font-weight:500;font-size:1.35rem;line-height:1.2}
+  .tl-item .org{color:var(--naranja);font-size:.85rem;font-weight:600;margin-top:.2rem}
+  .tl-item p{color:var(--grafito);font-size:.93rem;margin-top:.55rem;max-width:66ch}
+  @media (max-width:640px){.tl-item{grid-template-columns:1fr;gap:.4rem}}
+
+  /* ---------- Credenciales ---------- */
+  .dos-col{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4.5rem)}
+  .dos-col h3{
+    font-size:.78rem;text-transform:uppercase;letter-spacing:.18em;font-weight:700;
+    margin-bottom:1.3rem;
+  }
+  .lista{list-style:none}
+  .lista li{padding:.85rem 0;border-top:1px solid var(--gris-claro);font-size:.93rem;color:var(--grafito)}
+  .lista li strong{color:var(--negro);font-weight:700;display:block}
+  .lista li span{font-size:.82rem;color:var(--gris)}
+  @media (max-width:720px){.dos-col{grid-template-columns:1fr}}
+
+  /* ---------- Contacto (negro, cierre personal) ---------- */
+  .contacto{background:var(--negro);color:var(--blanco)}
+  .contacto h2{color:var(--blanco);max-width:18ch}
+  .contacto h2 .verbo{color:var(--naranja)}
+  .contact-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(2rem,5vw,4.5rem);align-items:start}
+  .contacto .prose{color:#BDBDBD}
+  .firma{
+    font-family:var(--caveat);font-weight:500;
+    font-size:clamp(2.2rem,4vw,2.8rem);line-height:1.05;color:var(--blanco);
+    margin-top:2.4rem;
+  }
+  .contact-list{list-style:none}
+  .contact-list li{padding:1.05rem 0;border-top:1px solid var(--grafito)}
+  .contact-list li:last-child{border-bottom:1px solid var(--grafito)}
+  .contact-list .k{
+    font-size:.7rem;text-transform:uppercase;letter-spacing:.15em;font-weight:600;
+    color:#8A8A8A;display:block;margin-bottom:.25rem;
+  }
+  .contact-list a{font-family:var(--oswald);font-weight:400;font-size:1.3rem;color:var(--blanco)}
+  .contact-list a:hover{color:var(--naranja)}
+  @media (max-width:720px){.contact-grid{grid-template-columns:1fr}}
+
+  footer.site{background:var(--negro);border-top:1px solid var(--grafito);padding:1.5rem 0 2rem}
+  footer.site .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+  footer.site p{font-size:.8rem;color:#8A8A8A}
+  footer.site a{color:#8A8A8A}
+  footer.site a:hover{color:var(--naranja)}
+
+  /* Reveal on scroll */
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion: reduce){.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <nav class="nav wrap" aria-label="Principal">
+    <a class="brand" href="#inicio">Luis Aragón<span>.</span></a>
+    <ul>
+      <li><a href="#enfoque">Enfoque</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#trayectoria">Trayectoria</a></li>
+      <li><a href="blog.html">Investigaciones</a></li>
+      <li><a href="#contacto" class="cta">Conversemos</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="inicio">
+
+  <!-- Hero manifiesto -->
+  <div class="hero">
+    <div class="wrap grid">
+      <div class="retrato">
+        <img src="assets/luis-portrait.png" alt="Luis Aragón">
+      </div>
+      <div>
+        <h1>
+          <span class="linea"><span class="verbo">Multiplicar</span> las capacidades de líderes, colaboradores y equipos.</span>
+          <span class="linea"><span class="verbo">Reinventar</span> los negocios y el trabajo en la era de la IA.</span>
+        </h1>
+        <div class="actions">
+          <a class="btn solid" href="#contacto">Conversemos</a>
+          <a class="btn line" href="https://www.linkedin.com/in/aragonluis/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stripe -->
+  <div class="stripe">
+    <div class="wrap in">
+      <p><b>Luis Aragón</b> · Mentor Coach Advisor · Estrategia, Cultura y Adopción de IA</p>
+      <div class="li"><span>in</span>linkedin.com/in/aragonluis</div>
+    </div>
+  </div>
+
+  <!-- Ficha -->
+  <div class="wrap">
+    <div class="ficha" role="list" aria-label="Datos destacados">
+      <div role="listitem"><div class="num">26</div><p>años en Santander Argentina: CHRO, Chief Strategy Officer y líder de banca digital</p></div>
+      <div role="listitem"><div class="num">8<sup>va</sup></div><p>reinvención profesional: hoy, la adopción práctica de la IA</p></div>
+      <div role="listitem"><div class="num">5<sup>×</sup></div><p>Mejor Empresa para Trabajar en Argentina, con el equipo de Santander</p></div>
+      <div role="listitem"><div class="num">10</div><p>años en el podio de las 3 mejores empresas para trabajar del país</p></div>
+    </div>
+  </div>
+
+  <!-- Enfoque -->
+  <div class="wrap">
+    <section id="enfoque">
+      <div class="sec-label"><span>Enfoque</span></div>
+      <div class="enfoque-grid">
+        <div>
+          <h2>Ingeniero de formación. Arquitecto de conversaciones y procesos de reinvención.</h2>
+          <div class="prose">
+            <p>Camino desde hace años la frontera entre <strong>estrategia, tecnología y evolución humana</strong>. Fui CHRO, Chief Strategy Officer y Chief Digital Officer. Integré el equipo que hizo de Santander el Mejor Banco, la Mejor Banca Digital y una de las Mejores Empresas para Trabajar durante una década.</p>
+            <p>Durante muchos años gestioné proyectos, evolución, innovaciones y crisis. Un capital que se destila y se convierte en <strong>criterio</strong>. Lo más valioso de ese recorrido fue ver, desde adentro, cómo el talento florece cuando se lo escucha, se lo desafía con inteligencia y se lo conecta con un propósito claro.</p>
+            <p>Hoy acompaño a quienes buscan multiplicar productividad, innovación y aprendizaje en contextos de alta complejidad. Voy más allá de la teoría: ayudo a <strong>desplegar asistentes y optimizar flujos de trabajo reales</strong>.</p>
+          </div>
+        </div>
+        <div>
+          <figure class="enfoque-foto reveal">
+            <img src="assets/luis-speaking.png" alt="Luis Aragón facilitando una sesión de formación">
+            <figcaption>Facilitando una experiencia de Inteligencia Humana Aumentada</figcaption>
+          </figure>
+          <blockquote class="pullquote reveal">
+            <p>El futuro no se espera: se <span style="color:var(--naranja)">anticipa</span>, se <span style="color:var(--naranja)">diseña</span> y se <span style="color:var(--naranja)">crea</span>.</p>
+            <small>La premisa de cada acompañamiento</small>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Idea fuerza -->
+  <div class="idea-fuerza">
+    <div class="wrap">
+      <p>La IA no reemplaza al talento. <span class="verbo">Lo multiplica.</span></p>
+    </div>
+  </div>
+
+  <!-- Servicios -->
+  <div class="wrap">
+    <section id="servicios">
+      <div class="sec-label"><span>Servicios</span></div>
+      <h2>Cuatro maneras de <span class="verbo">trabajar juntos</span></h2>
+      <div class="servicios">
+        <article class="servicio reveal">
+          <div class="n">01</div>
+          <div>
+            <span class="tag">Personas</span>
+            <h3>Mentoría y coaching ejecutivo</h3>
+            <p>Acompañamiento uno a uno a líderes, emprendedores y profesionales en transición: reinvención de carrera, decisiones complejas y desarrollo del propio liderazgo en la era de la IA.</p>
+          </div>
+        </article>
+        <article class="servicio reveal">
+          <div class="n">02</div>
+          <div>
+            <span class="tag">Organizaciones</span>
+            <h3>Advisory en estrategia y adopción de IA</h3>
+            <p>De la visión al despliegue: estrategia de adopción, cultura y gestión del cambio, diseño de asistentes y agentes, optimización de flujos de trabajo reales.</p>
+          </div>
+        </article>
+        <article class="servicio reveal">
+          <div class="n">03</div>
+          <div>
+            <span class="tag">Equipos</span>
+            <h3>Formación y talleres</h3>
+            <p>Experiencias intensivas y prácticas — como las del MBA de la Universidad Torcuato Di Tella y la Universidad Nacional de Cuyo — donde cada participante construye una solución concreta e implementable.</p>
+          </div>
+        </article>
+        <article class="servicio reveal">
+          <div class="n">04</div>
+          <div>
+            <span class="tag">Mentoría aumentada</span>
+            <h3>LuisMentor</h3>
+            <p>Mi propio laboratorio: un mentor de IA construido en Claude que destila mi método y mi criterio para extender el acompañamiento entre sesiones. Practico lo que propongo.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </div>
+
+  <!-- Investigaciones teaser -->
+  <div class="wrap">
+    <section id="investigaciones">
+      <div class="sec-label"><span>Investigaciones</span></div>
+      <h2><span class="verbo">Investigar</span> el futuro para diseñarlo</h2>
+      <p class="prose" style="margin-bottom:2.2rem">Desde 2020 investigo el futuro del trabajo en red: conversaciones, entrevistas, pulsos en LinkedIn — y, desde 2023, la co-creación con IA. Algunas investigaciones recientes:</p>
+      <div class="blog-grid">
+        <article class="blog-card reveal">
+          <span class="tag azul">IA y trabajos del futuro</span>
+          <h3><a href="blog.html#ia-trabajos">Widesizing: multiplicar el impacto de una sola persona</a></h3>
+          <p>Cuando el criterio humano y los agentes de IA se combinan, los KPIs cambian de horas invertidas a problemas resueltos.</p>
+        </article>
+        <article class="blog-card reveal">
+          <span class="tag azul">IA y trabajos del futuro</span>
+          <h3><a href="blog.html#ia-trabajos">Las 7 transiciones: ¿qué rol tendremos cuando la IA haga lo que hacíamos?</a></h3>
+          <p>Del miedo al reemplazo a rediseñar la contribución; de ejecutor de instrucciones a orquestador de sistemas.</p>
+        </article>
+        <article class="blog-card reveal">
+          <span class="tag verde">Reinvención y talento</span>
+          <h3><a href="blog.html#reinvencion">¿En serio me preguntás por la edad?</a></h3>
+          <p>La evolución del talento senior: el edadismo como el próximo eslabón de la Diversidad 360 y la reinvención como elección.</p>
+        </article>
+      </div>
+      <div class="blog-more">
+        <a class="btn dark" href="blog.html">Ver todas las investigaciones</a>
+      </div>
+    </section>
+  </div>
+
+  <!-- Trayectoria -->
+  <div class="wrap">
+    <section id="trayectoria">
+      <div class="sec-label"><span>Trayectoria</span></div>
+      <h2>Un recorrido que se convierte en <span class="verbo">criterio</span></h2>
+      <p class="prose" style="margin-bottom:2.2rem">No es un currículum: son reinvenciones. Cada etapa se destila en el criterio con el que hoy acompaño a personas y organizaciones a multiplicar sus capacidades con la IA.</p>
+      <div class="tl">
+        <div class="tl-item reveal">
+          <span class="years">2023 — hoy</span>
+          <div>
+            <h3>La 8ª reinvención: Mentor, Coach &amp; Advisor en IA</h3>
+            <p class="org">LuisArg · Buenos Aires</p>
+            <p>El punto donde todo el recorrido converge: convertir la IA en inteligencia humana aumentada al servicio de propósitos reales.</p>
+          </div>
+        </div>
+        <div class="tl-item reveal">
+          <span class="years">2025 — hoy</span>
+          <div>
+            <h3>Transmitir el método: docencia en IA aplicada</h3>
+            <p class="org">Universidad Torcuato Di Tella (MBA) · Universidad Nacional de Cuyo</p>
+            <p>Lo aprendido se multiplica cuando se enseña: estudiantes que construyen asistentes y agentes para desafíos reales, no trabajos académicos.</p>
+          </div>
+        </div>
+        <div class="tl-item reveal">
+          <span class="years">2021 — hoy</span>
+          <div>
+            <h3>Acompañar reinvenciones ajenas: advisory y facilitación</h3>
+            <p class="org">Squadra · Binit Tech / Subgen.AI · Diagonal · Vistage</p>
+            <p>De emprendedores que escalaron su plataforma de IA a nivel global, a Diagui: el primer asistente de IA para la reinvención de los +45.</p>
+          </div>
+        </div>
+        <div class="tl-item reveal">
+          <span class="years">1996 — 2022</span>
+          <div>
+            <h3>La escuela del criterio: 26 años en la primera línea</h3>
+            <p class="org">Santander Argentina · CHRO, Chief Strategy Officer, banca digital</p>
+            <p>Ahí aprendí que la tecnología transforma cuando la cultura y el talento van primero: de la banca por internet pionera a la Mejor Empresa para Trabajar.</p>
+          </div>
+        </div>
+        <div class="tl-item reveal">
+          <span class="years">2010 — 2019</span>
+          <div>
+            <h3>Las redes como multiplicadores</h3>
+            <p class="org">IDEA · Universia Argentina</p>
+            <p>500 profesionales aprendiendo juntos: el germen de mi manera de investigar y crear en red, que hoy aplico a la adopción de la IA.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Credenciales -->
+  <div class="wrap">
+    <section id="credenciales">
+      <div class="sec-label"><span>Reconocimientos y formación</span></div>
+      <div class="dos-col">
+        <div>
+          <h3>Reconocimientos</h3>
+          <ul class="lista">
+            <li><strong>Mejor Empresa para Trabajar en Argentina</strong><span>5 veces, con el equipo de Santander · 10 años en el podio de las 3 mejores</span></li>
+            <li><strong>Best Internet Bank in Latin America 2006</strong><span>Global Finance</span></li>
+            <li><strong>Best Internet Bank in Argentina 2001–2007</strong><span>Global Finance, siete años consecutivos</span></li>
+            <li><strong>Mejor Sitio de Servicios Financieros 2006</strong><span>Premio Mate.ar</span></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Formación</h3>
+          <ul class="lista">
+            <li><strong>Ingeniería Industrial</strong><span>Pontificia Universidad Católica Argentina</span></li>
+            <li><strong>Master in International Business</strong><span>École des Ponts ParisTech</span></li>
+            <li><strong>Programa Internacional en Liderazgo y Coaching Profesional</strong><span>Escuela Hacer Historia · UMSA</span></li>
+            <li><strong>Data Science</strong><span>Digital House</span></li>
+            <li><strong>Teoría de la Complejidad y Sistemas Humanos Complejos</strong><span>Eve Mitleton-Kelly (LSE) · AMG</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Contacto -->
+  <section class="contacto" id="contacto">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div>
+          <p style="font-size:.78rem;text-transform:uppercase;letter-spacing:.18em;font-weight:600;color:#8A8A8A;margin-bottom:1.4rem">Contacto</p>
+          <h2>Conversemos sobre tu próxima <span class="verbo">reinvención</span></h2>
+          <p class="prose">Si lideras una organización, un equipo o tu propia carrera y quieres convertir la IA en una ventaja real y sostenible, empecemos por una conversación.</p>
+          <p class="firma">Luis Aragón</p>
+        </div>
+        <ul class="contact-list">
+          <li><span class="k">Email</span><a href="mailto:luis.aragon.mentoring@gmail.com">luis.aragon.mentoring@gmail.com</a></li>
+          <li><span class="k">LinkedIn</span><a href="https://www.linkedin.com/in/aragonluis/" target="_blank" rel="noopener">/in/aragonluis</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <p>© 2026 Luis Aragón · Buenos Aires, Argentina</p>
+    <p>Mentor · Coach · Advisor — Estrategia, Cultura y Adopción de IA · <a href="blog.html">Investigaciones</a></p>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  })();
+</script>
+
+</body>
+</html>
